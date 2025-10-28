@@ -1,0 +1,58 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<body>
+
+
+  <script>
+    // Shopping list
+    let shoppingList = [
+      { name: "Bread", quantity: 1, bought: false },
+      { name: "Milk", quantity: 2, bought: true },
+      { name: "Apples", quantity: 5, bought: false }
+    ];
+
+    // Show list
+    function showList() {
+      console.log("Shopping list:");
+
+      const notBought = shoppingList.filter(item => !item.bought);
+      const bought = shoppingList.filter(item => item.bought);
+
+      [...notBought, ...bought].forEach(item => {
+        console.log(`${item.name} — ${item.quantity} ${item.bought ? "(bought)" : "(not yet bought!)"}`);
+      });
+    }
+
+    // Add item to list
+    function addItem(name, quantity) {
+      const existing = shoppingList.find(item => item.name.toLowerCase() === name.toLowerCase());
+      if (existing) {
+        existing.quantity += quantity;
+      } else {
+        shoppingList.push({ name, quantity, bought: false });
+      }
+    }
+
+    // Mark as bought
+    function buyItem(name) {
+      const item = shoppingList.find(item => item.name.toLowerCase() === name.toLowerCase());
+      if (item) {
+        item.bought = true;
+      } else {
+        console.log("Item not found!");
+      }
+    }
+
+
+    showList();
+    addItem("Bread", 2);
+    buyItem("Apples", 3);
+    console.log("\nAfter change:");
+    showList();
+
+  </script>
+
+</body>
+
+</html>
