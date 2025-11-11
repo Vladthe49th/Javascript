@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Color pallete</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      background-color: #f4f4f4;
+    }
+
+    h1 {
+      transition: color 0.3s ease;
+    }
+
+    .palette {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .color-cell {
+      width: 50px;
+      height: 50px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 2px solid #ccc;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .color-cell:hover {
+      transform: scale(1.1);
+      border-color: black;
+    }
+  </style>
+</head>
+<body>
+
+<h1 id="text">Choose the color for me!</h1>
+
+<div class="palette">
+  <div class="color-cell" data-color="red" style="background-color: red;"></div>
+  <div class="color-cell" data-color="green" style="background-color: green;"></div>
+  <div class="color-cell" data-color="blue" style="background-color: blue;"></div>
+  <div class="color-cell" data-color="orange" style="background-color: orange;"></div>
+  <div class="color-cell" data-color="purple" style="background-color: purple;"></div>
+</div>
+
+<script>
+  // Getting color cells
+  const cells = document.querySelectorAll('.color-cell');
+  const text = document.getElementById('text');
+
+  // Cell click listener
+  cells.forEach(cell => {
+    cell.addEventListener('click', () => {
+      const chosenColor = cell.dataset.color;
+      text.style.color = chosenColor;
+    });
+  });
+</script>
+
+</body>
+</html>
