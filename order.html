@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product order</title>
+  <link rel="stylesheet" href="order.css">
+</head>
+<body>
+<div class="order-container">
+  <h1>Fast order</h1>
+  <hr>
+
+  <div class="product-card">
+    <img src="img/White.png " alt="Product" class="product-img">
+    <div class="product-info">
+      <h2 class="product-name">Kvas Taras White WIDE</h2>
+      <p class="product-size">Size: <span>Universal</span></p>
+      <div class="quantity-section">
+        <button id="minus">−</button>
+        <span id="quantity">2</span>
+        <button id="plus">+</button>
+      </div>
+      <p class="price"><span id="total-price">840</span> uah</p>
+    </div>
+  </div>
+
+  <div class="promo-section">
+    <label>
+      <input type="checkbox" id="use-promo"> Use promo code
+    </label>
+    <div id="promo-container" class="hidden">
+      <input type="text" id="promo-code" placeholder="Enter your promo code">
+      <button id="apply-promo">Use</button>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <input type="text" id="user-name" placeholder="Name">
+    <input type="tel" id="user-phone" placeholder="+380XXXXXXXXX">
+  </div>
+
+  <div class="buttons">
+    <button id="cancel" class="btn-cancel">CANCEL</button>
+    <button id="submit" class="btn-submit"> ORDER</button>
+  </div>
+</div>
+
+<script src="order.js"></script>
+</body>
+</html>
