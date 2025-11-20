@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Promise Chain</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    #log { margin-top: 20px; padding: 10px; background: #f0f0f0; }
+    .error { color: red; }
+  </style>
+</head>
+<body>
+
+<h2>Order processing</h2>
+<button id="startBtn">Load process</button>
+
+<div id="log"></div>
+
+<script>
+  // Утиліта для логів
+  function log(message, isError = false) {
+    const div = document.getElementById('log');
+    const p = document.createElement('p');
+    p.textContent = message;
+    if (isError) p.classList.add('error');
+    div.appendChild(p);
+  }
+
+  // 1) Створення замовлення
+  function createOrder(orderId) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        // 20% шанс помилки
+        if (Math.random() < 0.2) {
+          reject("Error in creating order!");
+        } else {
+          resolve(`Order created: ${orderId}`);
+        }
+      }, 1000);
+    });
+  }
+
+  // 2) Обробка замовлення
+  function processOrder(orderId) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (Math.random() < 0.2) {
+          reject("Error in processing order!");
+        } else {
+          resolve(`Order processed: ${orderId}`);
+        }
+      }, 2000);
+    });
+  }
+
+  // 3) Доставка замовлення
+  function deliverOrder(orderId) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (Math.random() < 0.2) {
+          reject("Delivery error!");
+        } else {
+          resolve(`Order delivered: ${orderId}`);
+        }
+      }, 3000);
+    });
+  }
+
+  // Ланцюжок Promises
+  document.getElementById("startBtn").onclick = () => {
+    document.getElementById('log').innerHTML = ""; // очистити лог
+
+    const orderId = Math.floor(Math.random() * 1000);
+
+    createOrder(orderId)
+      .then(msg => {
+        log(msg);
+        return processOrder(orderId);
+      })
+      .then(msg => {
+        log(msg);
+        return deliverOrder(orderId);
+      })
+      .then(msg => {
+        log(msg);
+        log("All stages successfully finished!");
+      })
+      .catch(error => {
+        log("❌ " + error, true);
+        log("Process stopped.", true);
+      });
+  };
+</script>
+
+</body>
+</html>
