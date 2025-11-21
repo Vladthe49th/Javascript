@@ -17,7 +17,6 @@
 <div id="log"></div>
 
 <script>
-  // Утиліта для логів
   function log(message, isError = false) {
     const div = document.getElementById('log');
     const p = document.createElement('p');
@@ -26,11 +25,9 @@
     div.appendChild(p);
   }
 
-  // 1) Створення замовлення
   function createOrder(orderId) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        // 20% шанс помилки
         if (Math.random() < 0.2) {
           reject("Error in creating order!");
         } else {
@@ -40,7 +37,6 @@
     });
   }
 
-  // 2) Обробка замовлення
   function processOrder(orderId) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -53,7 +49,6 @@
     });
   }
 
-  // 3) Доставка замовлення
   function deliverOrder(orderId) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -66,7 +61,6 @@
     });
   }
 
-  // Ланцюжок Promises
   document.getElementById("startBtn").onclick = () => {
     document.getElementById('log').innerHTML = ""; // очистити лог
 
