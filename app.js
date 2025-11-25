@@ -4,17 +4,22 @@ const priceInput = document.getElementById("productPrice");
 const addBtn = document.getElementById("addProduct");
 const productList = document.getElementById("productList");
 
-// Load products
-function loadProducts() {
-  const products = JSON.parse(localStorage.getItem("products") || "[]");
-  products.forEach(p => addProductToDOM(p));
+// ASYNC Load products
+async function loadProducts() {
+  const response = await fetch("products.json");
+  const data = await response.json();
+  renderProducts(data);
 }
+
+
+
+
 
 // Add product to DOM
 function addProductToDOM(product) {
   const li = document.createElement("li");
   li.className = "product-item";
-  li.textContent = `${product.name} — ${product.price} грн`;
+  li.textContent = `${product.name} — ${product.price} uah`;
   productList.appendChild(li);
 }
 
