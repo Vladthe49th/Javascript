@@ -2,9 +2,9 @@ async function displayAdvice() {
   const input = document.getElementById("user-input").value.toLowerCase();
   const container = document.getElementById("advice-container");
 
-  container.textContent = "Завантаження...";
+  container.textContent = "Loading...";
 
-  // Наша штучна таблиця ключових слів → ID порад
+
   const topicMap = {
     love: 36,
     life: 25,
@@ -16,10 +16,9 @@ async function displayAdvice() {
     success: 17
   };
 
-  // Витягуємо слова з тексту
+
   const words = input.split(/[\s,.;!?]+/);
 
-  // Знаходимо перше слово, що має відповідний advice ID
   let adviceId = null;
   for (let w of words) {
     if (topicMap[w]) {
@@ -28,14 +27,14 @@ async function displayAdvice() {
     }
   }
 
-  // Якщо немає теми — покажемо випадкову пораду
+
   const url = adviceId
     ? `https://api.adviceslip.com/advice/${adviceId}`
     : `https://api.adviceslip.com/advice`;
 
   try {
     const response = await fetch(url, {
-      cache: "no-cache"   // щоб не кешував старі поради
+      cache: "no-cache"   
     });
 
     if (!response.ok) {
@@ -46,6 +45,6 @@ async function displayAdvice() {
     container.textContent = data.slip.advice;
 
   } catch (error) {
-    container.textContent = "Сталася помилка: " + error.message;
+    container.textContent = "An error happened: " + error.message;
   }
 }
