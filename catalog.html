@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Каталог товарів</title>
+  <link rel="stylesheet" href="catalog.css">
+</head>
+<body>
+
+<header>
+  <h1>Каталог товарів</h1>
+  <button id="theme-toggle">Dark mode</button>
+</header>
+
+<section id="filters">
+  <h2>Фільтри</h2>
+
+  <label>
+    Категорія:
+    <select id="category-filter">
+      <option value="all">Всі товари</option>
+      <option value="fruits">Фрукти</option>
+      <option value="drinks">Напої</option>
+      <option value="electronics">Електроніка</option>
+      <option value="toys">Іграшки</option>
+      <option value="games">Ігри</option>
+    </select>
+  </label>
+
+  <label>
+    Мінімальна ціна:
+    <input type="number" id="min-price" placeholder="0">
+  </label>
+
+  <label>
+    Максимальна ціна:
+    <input type="number" id="max-price" placeholder="2000">
+  </label>
+
+  <button id="apply-filters">Застосувати</button>
+</section>
+
+<section id="catalog"></section>
+
+<script src="catalog.js"></script>
+</body>
+</html>
